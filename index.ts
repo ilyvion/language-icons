@@ -5,7 +5,7 @@ import { widths } from "./widths";
 import * as colors from "./colors.json";
 
 const currentDir = process.cwd();
-const iconDir = join(currentDir, "icons");
+const iconDir = join(currentDir, "../public/language-icons");
 
 const leftMargin = (code: string) => {
   const totalWidth = 128;
