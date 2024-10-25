@@ -4,6 +4,9 @@ import { join } from "path";
 import { widths } from "./widths";
 import * as colors from "./colors.json";
 
+const currentDir = process.cwd();
+const iconDir = join(currentDir, "icons");
+
 const leftMargin = (code: string) => {
   const totalWidth = 128;
   let width = 0;
@@ -18,10 +21,10 @@ const leftMargin = (code: string) => {
 };
 
 const read = (fileName: string) =>
-  fs.promises.readFile(join(__dirname, fileName), "utf8");
+  fs.promises.readFile(join(currentDir, fileName), "utf8");
 
 const writeIcon = (code: string, data: string) =>
-  fs.promises.writeFile(join(__dirname, "icons", `${code}.svg`), data);
+  fs.promises.writeFile(join(iconDir, `${code}.svg`), data);
 
 async function main() {
   console.log(`Generating ${Object.keys(colors).length} icons...`);
@@ -31,7 +34,6 @@ async function main() {
     read("three-colors.svg"),
   ]);
 
-  const iconDir = join(__dirname, "icons");
   if (!fs.existsSync(iconDir)) {
     fs.mkdirSync(iconDir);
   }
